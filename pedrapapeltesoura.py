@@ -35,77 +35,136 @@ chique_pequena = font.Font("fontechique.ttf", 35)
 
 def ia_pedra(escolha):
     global adversario, timer, soma, soma_adv
-    if escolha == "pedra":
-        result_empate = chique.render(f"Empate", True, (255,255,0))
-        escolha_adversario = chique.render(f"A IA escolheu {adversario}", True, (255,255,0))
-        window.blit(result_empate, (600,200))
-        window.blit(escolha_adversario, (600,300))
-    
-    elif escolha == "papel":
-        result_vit = chique.render(f"VOCE GANHOU!!!", True, (255,255,0))
-        escolha_adversario = chique.render(f"A IA escolheu {adversario}", True, (255,255,0))
-        window.blit(result_vit, (600,200))
-        window.blit(escolha_adversario, (600,300))
-        soma +=1
-    
-    elif escolha == "tesoura":
-        result_derrota = chique.render(f"voce perdeu :(", True, (255,255,0))
-        escolha_adversario = chique.render(f"A IA escolheu {adversario}", True, (255,255,0))
-        window.blit(result_derrota, (600,200))
-        window.blit(escolha_adversario, (600,300))
-        soma_adv +=1
+    if timer > 0:
+        if escolha == "pedra":
+            if timer > 0:
+                result_empate = chique.render(f"empate", True, (255,255,0))
+                escolha_adversario = chique.render(f"a ia escolheu {adversario}", True, (255,255,0))
+                window.blit(result_empate, (600,200))
+                window.blit(escolha_adversario, (490,20))
+                draw.rect(window, (255, 255, 0), (100, 300,350,300))
+                draw.rect(window, (0, 0, 0), (100, 300,350,300),5)
+                timer -=1
+            if timer == 0:
+                    reiniciar_jogo()
+        elif escolha == "papel":
+            if timer > 0:
+                result_vit = chique.render(f"voce ganhou!!!", True, (0,255,0))
+                escolha_adversario = chique.render(f"a ia escolheu {adversario}", True, (255,255,0))
+                window.blit(result_vit, (530,200))
+                window.blit(escolha_adversario, (490,20))
+                draw.rect(window, (0, 255, 0), (500, 300,350,300))
+                draw.rect(window, (0, 0, 0), (500, 300,350,300),5)
+                timer -=1
+            if timer == 239:
+                    soma +=1
+            if timer == 0:
+                    reiniciar_jogo()
+        elif escolha == "tesoura":
+            if timer > 0:
+                result_derrota = chique.render(f"voce perdeu :(", True, (255,0,0))
+                escolha_adversario = chique.render(f"a ia escolheu {adversario}", True, (255,255,0))
+                window.blit(result_derrota, (550,200))
+                window.blit(escolha_adversario, (490,20))
+                draw.rect(window, (255, 0, 0), (900, 300,350,300))
+                draw.rect(window, (0, 0, 0), (900, 300,350,300),5)
+                timer -=1
+            if timer == 239:
+                    soma_adv +=1
+            if timer == 0:
+                reiniciar_jogo()
 
 
 
 def ia_papel(escolha):
     global adversario, timer, soma, soma_adv
-    if escolha == "pedra":
-        result_derrota = chique.render(f"voce perdeu :(", True, (255,255,0))
-        escolha_adversario = chique.render(f"A IA escolheu {adversario}", True, (255,255,0))
-        window.blit(result_derrota, (600,200))
-        window.blit(escolha_adversario, (600,300))
-        timer -=1
-        soma_adv +=1
-    if escolha == "papel":
-        result_empate = chique.render(f"Empate", True, (255,255,0))
-        escolha_adversario = chique.render(f"A IA escolheu {adversario}", True, (255,255,0))
-        window.blit(result_empate, (600,200))
-        window.blit(escolha_adversario, (600,300))
-        timer -=1
-    elif escolha == "tesoura":
-        result_vit = chique.render(f"VOCE GANHOU!!!", True, (255,255,0))
-        escolha_adversario = chique.render(f"A IA escolheu {adversario}", True, (255,255,0))
-        window.blit(result_vit, (600,200))
-        window.blit(escolha_adversario, (600,300))
-        timer -=1
-        soma +=1
+    if timer > 0:
+        if escolha == "pedra":
+            if timer > 0:
+                result_derrota = chique.render(f"voce perdeu :(", True, (255,0,0))
+                escolha_adversario = chique.render(f"a ia escolheu {adversario}", True, (255,255,0))
+                window.blit(result_derrota, (550,200))
+                window.blit(escolha_adversario, (490,20))
+                draw.rect(window, (255, 0, 0), (100, 300,350,300))
+                draw.rect(window, (0, 0, 0), (100, 300,350,300),5)
+                timer -=1
+            if timer == 239:
+                soma_adv +=1
+            if timer == 0:
+                reiniciar_jogo()
+        if escolha == "papel":
+                if timer > 0:
+                    result_empate = chique.render(f"empate", True, (255,255,0))
+                    escolha_adversario = chique.render(f"a ia escolheu {adversario}", True, (255,255,0))
+                    window.blit(result_empate, (600,200))
+                    window.blit(escolha_adversario, (490,20))
+                    draw.rect(window, (255, 255, 0), (500, 300,350,300))
+                    draw.rect(window, (0, 0, 0), (500, 300,350,300),5)
+                    timer -=1
+                if timer == 0:
+                    reiniciar_jogo()
+        elif escolha == "tesoura":
+            if timer > 0:
+                result_vit = chique.render(f"voce ganhou!!!", True, (0,255,0))
+                escolha_adversario = chique.render(f"a ia escolheu {adversario}", True, (255,255,0))
+                window.blit(result_vit, (530,200))
+                window.blit(escolha_adversario, (490,20))
+                draw.rect(window, (0, 255, 0), (900, 300,350,300))
+                draw.rect(window, (0, 0, 0), (900, 300,350,300),5)
+                timer -=1
+            if timer == 239:
+                soma +=1
+            if timer == 0:
+                    reiniciar_jogo()
+    
 
 
 def ia_tesoura(escolha):
     global adversario, timer, soma, soma_adv
-    if escolha == "pedra":
-        result_vit = chique.render(f"VOCE GANHOU!!!", True, (255,255,0))
-        escolha_adversario = chique.render(f"A IA escolheu {adversario}", True, (255,255,0))
-        window.blit(result_vit, (600,200))
-        window.blit(escolha_adversario, (600,300))
-        soma +=1
-    elif escolha == "papel":
-        result_derrota = chique.render(f"voce perdeu :(", True, (255,255,0))
-        escolha_adversario = chique.render(f"A IA escolheu {adversario}", True, (255,255,0))
-        window.blit(result_derrota, (600,200))
-        window.blit(escolha_adversario, (600,300))
-        soma_adv +=1
-    elif escolha == "tesoura":
-        result_empate = chique.render(f"Empate", True, (255,255,0))
-        escolha_adversario = chique.render(f"A IA escolheu {adversario}", True, (255,255,0))
-        window.blit(result_empate, (600,200))
-        window.blit(escolha_adversario, (600,300))
+    if timer > 0:
+        if escolha == "pedra":
+            if timer > 0:
+                result_vit = chique.render(f"voce ganhou!!!", True, (0,255,0))
+                escolha_adversario = chique.render(f"a ia escolheu {adversario}", True, (255,255,0))
+                window.blit(result_vit, (530,200))
+                window.blit(escolha_adversario, (490,20))
+                draw.rect(window, (0, 255, 0), (100, 300,350,300))
+                draw.rect(window, (0, 0, 0), (100, 300,350,300),5)
+                timer -=1
+            if timer == 239:
+                soma +=1
+            if timer == 0:
+                reiniciar_jogo()
+        elif escolha == "papel":
+            if timer > 0:
+                result_derrota = chique.render(f"voce perdeu :(", True, (255,0,0))
+                escolha_adversario = chique.render(f"a ia escolheu {adversario}", True, (255,255,0))
+                window.blit(result_derrota, (550,200))
+                window.blit(escolha_adversario, (490,20))
+                draw.rect(window, (255, 0, 0), (500, 300,350,300))
+                draw.rect(window, (0, 0, 0), (500, 300,350,300),5)
+                timer -=1
+            if timer == 239:
+                soma_adv +=1
+            if timer == 0:
+                reiniciar_jogo()
+        elif escolha == "tesoura":
+            if timer > 0:
+                result_empate = chique.render(f"empate", True, (255,255,0))
+                escolha_adversario = chique.render(f"a ia escolheu {adversario}", True, (255,255,0))
+                window.blit(result_empate, (600,200))
+                window.blit(escolha_adversario, (490,20))
+                draw.rect(window, (255, 255, 0), (900, 300,350,300))
+                draw.rect(window, (0, 0, 0), (900, 300,350,300),5)
+                timer -=1
+            if timer == 0:
+                reiniciar_jogo()
 
 
 def reiniciar_jogo():
-    global adversario, timer
+    global adversario, timer, escolha
+    escolha = ""
     adversario = random.choice(escolha_ia)
-    timer = 240
 
 
 while running:
@@ -120,30 +179,30 @@ while running:
             running = False
             sys.exit()
 
-  
+        if timer == 0:
+            if ev.type == MOUSEBUTTONDOWN:
+                    if 100<mouse_x<450 and 300<mouse_y<600:
+                        if ev.button == 1:
+                            escolha = "pedra"
+                            timer = 240
+                            draw.rect(window, (255, 0, 0), (100, 300,350,300))
 
-        if ev.type == MOUSEBUTTONDOWN:
-                if 100<mouse_x<350 and 300<mouse_y<600:
-                    if ev.button == 1:
-                        escolha = "pedra"
-                        timer = 240
+                
+            if ev.type == MOUSEBUTTONDOWN:
+                    if 500<mouse_x<850 and 300<mouse_y<600:
+                        if ev.button == 1:
+                            escolha = "papel"
+                            timer = 240
 
             
-        if ev.type == MOUSEBUTTONDOWN:
-                if 500<mouse_x<850 and 300<mouse_y<600:
-                    if ev.button == 1:
-                        escolha = "papel"
-                        timer = 240
+            if ev.type == MOUSEBUTTONDOWN:
+                    if 900<mouse_x<1250 and 300<mouse_y<600:
+                        if ev.button == 1:
+                            escolha = "tesoura"
+                            timer = 240
 
-        
-        if ev.type == MOUSEBUTTONDOWN:
-                if 900<mouse_x<1250 and 300<mouse_y<600:
-                    if ev.button == 1:
-                        escolha = "tesoura"
-                        timer = 240
-
-    choice_ia = chique.render(f"ia escolheu {adversario}", True, (255,255,0))
-    window.blit(choice_ia, (600,0))
+    #choice_ia = chique.render(f"ia escolheu {adversario}", True, (255,255,0))
+    #window.blit(choice_ia, (600,0))
 
     texto_base = chique.render(f"escolha:", True, (255,255,255))
     window.blit(texto_base, (600,100))
@@ -162,19 +221,22 @@ while running:
     draw.rect(window, (0, 0, 0), (500, 300,350,300),5)
     draw.rect(window, (0, 0, 0), (900, 300,350,300),5)
 
-    window.blit(pedra, (130,300))
-    window.blit(papel, (530,300))
-    window.blit(tesoura, (930,350))
+    
+
+    #print(timer)
+    #print(mouse_x, mouse_y)
 
     if adversario == "pedra":
         ia_pedra(escolha)
-    elif adversario == "papel":
+    
+    if adversario == "papel":
         ia_papel(escolha)
-    elif adversario == "tesoura":
+    
+    if adversario == "tesoura":
         ia_tesoura(escolha)
 
-
-    
-
+    window.blit(pedra, (130,300))
+    window.blit(papel, (530,300))
+    window.blit(tesoura, (930,350))
 
     display.update()
